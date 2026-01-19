@@ -73,3 +73,7 @@ Thumbs.db
 # Local config files
 # =========================
 *.local
+
+# Uploaded images
+/backend/public/images/
+
