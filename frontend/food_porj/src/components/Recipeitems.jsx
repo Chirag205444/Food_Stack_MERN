@@ -72,10 +72,10 @@ function Recipeitems() {
     <>
        <div className='w-full  bg-[#b4f0e5] px-10 py-15 h-screen'>
         <h1 className='text-3xl pb-1 font-bold'>Recipes</h1>
-         <div className='px-10 h-full rounded-sm  bg-[#ededee]  w-full flex flex-wrap gap-5 overflow-y-scroll shadow-xl py-10'>
+         <div className='px-10 h-full rounded-sm  bg-[#ededee]  w-full flex flex-wrap content-start gap-5 overflow-y-scroll shadow-xl py-10'>
             <input type="text" name='text' onChange={(e)=>handleSearch(e)} className='w-full h-10 border-2 border-gray-600 rounded-4xl placeholder:text-gray-600 outline-none px-4 py-1' placeholder='Search item...' />
-          {(recipe.message!='No recipes found')&& allRecipe.map((rec)=>(
-            <div  className='h-55 w-40 relative  rounded-xl overflow-hidden shadow-xl  bg-[#8ef6e3]  '>
+          {allRecipe && allRecipe.map((rec)=>(
+            <div key={rec._id} className='h-55 w-40 relative  rounded-xl overflow-hidden shadow-xl  bg-[#8ef6e3]  '>
                <div onClick={()=>{setOpen(prev=>!prev);setId(rec._id)}} className='h-[60%] cursor-pointer relative overflow-hidden flex items-center bg-gray-500 w-full'>
                    <img className='w-full  h-full object-cover' src={`http://localhost:5000/images/${rec.coverImage}`} alt="" />
                    {(path)&& <div className='absolute top-0 right-0 p-2'><Link to={`/editrecipe/${rec._id}`}><FaEdit className='cursor-pointer' /></Link></div>}        
@@ -95,7 +95,11 @@ function Recipeitems() {
           </div>
           ))
         }
-        <p className='text-gray-700 font-medium'>{(allRecipe.message==='No recipes found')&& "no recipe yet...!"}</p> 
+        {(allRecipe.length === 0) && (
+           <div className='w-full flex justify-center mt-20'>
+              <p className='text-gray-500 font-semibold text-2xl'>No recipes yet...!</p>
+           </div>
+        )}
        
         </div>
        </div>

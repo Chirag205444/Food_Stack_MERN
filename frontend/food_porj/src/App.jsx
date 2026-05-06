@@ -20,7 +20,7 @@ const allRecipe= async()=>{
 const getMyrecipe=async()=>{
    let user=JSON.parse(localStorage.getItem("user"));
    let allrecipe=await allRecipe()
-   return allrecipe.filter(item=>item.createdby===user._id)
+   return allrecipe.filter(item=>item.createdby===user?._id)
 }
 
  const getFavorite = async () => {

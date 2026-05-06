@@ -18,12 +18,9 @@ const upload = multer({ storage: storage })
 const getrecipes=async(req,res)=>{
     try{
       let allRecipes=await recipeModel.find();
-    if(allRecipes.length==0){
-         return res.status(200).json({ message: 'No recipes found' });
-    }
-    res.json(allRecipes);
+      res.json(allRecipes);
     }catch(err){ 
-    res.status(500).json({ error: 'Server error, please try again later' });
+      res.status(500).json({ error: 'Server error, please try again later' });
     }
 }
 
