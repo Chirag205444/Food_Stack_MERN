@@ -16,6 +16,7 @@ function Recipeitems() {
    const [open,setOpen] =useState(false);
    const [search,setSearch] = useState();
    const [itemid,setId] =useState("");
+   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
    const [isfavorite,setIsfavorite]=useState(() => {
   const favItems = JSON.parse(localStorage.getItem("fav")) ?? [];
   return favItems.map(item => item._id); 
@@ -77,7 +78,7 @@ function Recipeitems() {
           {allRecipe && allRecipe.map((rec)=>(
             <div key={rec._id} className='h-55 w-40 relative  rounded-xl overflow-hidden shadow-xl  bg-[#8ef6e3]  '>
                <div onClick={()=>{setOpen(prev=>!prev);setId(rec._id)}} className='h-[60%] cursor-pointer relative overflow-hidden flex items-center bg-gray-500 w-full'>
-                   <img className='w-full  h-full object-cover' src={`http://localhost:5000/images/${rec.coverImage}`} alt="" />
+                   <img className='w-full  h-full object-cover' src={`${BASE_URL}/images/${rec.coverImage}`} alt="" />
                    {(path)&& <div className='absolute top-0 right-0 p-2'><Link to={`/editrecipe/${rec._id}`}><FaEdit className='cursor-pointer' /></Link></div>}        
                 </div> 
                 <div className='mt-2 flex flex-col  justify-center items-center'>
