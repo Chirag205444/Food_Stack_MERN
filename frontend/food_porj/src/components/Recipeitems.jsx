@@ -16,7 +16,7 @@ function Recipeitems() {
    const [open,setOpen] =useState(false);
    const [search,setSearch] = useState();
    const [itemid,setId] =useState("");
-   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+  const BASE_URL=import.meta.env.VITE_BACKEND_URL;
    const [isfavorite,setIsfavorite]=useState(() => {
   const favItems = JSON.parse(localStorage.getItem("fav")) ?? [];
   return favItems.map(item => item._id); 
