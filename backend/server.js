@@ -8,7 +8,9 @@ const recipeRoutes = require('./routes/recipeRoute');
 const userRoutes = require('./routes/userRoute');
 
 // ✅ CORS (temporary for now)
-app.use(cors());
+app.use(cors({
+  origin: "food-stack-mern-alpha.vercel.app"
+}));
 
 // ✅ Middlewares
 app.use(express.json());
