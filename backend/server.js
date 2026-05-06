@@ -1,23 +1,28 @@
-const express=require('express');
-const app=express();
+const express = require('express');
+const app = express();
 require('dotenv').config();
-const cors=require('cors')
-const mongooseConnection=require('./config/mongooseConection');
-const recipeRoutes=require('./routes/recipeRoute');
-const userRoutes=require('./routes/userRoute');
 
-app.use(cors())
+const cors = require('cors');
+const mongooseConnection = require('./config/mongooseConection');
+const recipeRoutes = require('./routes/recipeRoute');
+const userRoutes = require('./routes/userRoute');
+
+// ✅ CORS (temporary for now)
+app.use(cors());
+
+// ✅ Middlewares
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static("public"))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
-PORT=process.env.PORT || 3000;
+// ✅ Routes
+app.use("/recipe", recipeRoutes);
+app.use("/", userRoutes);
 
-//app.use("/",userRoutes)
-app.use("/recipe",recipeRoutes);
-app.use("/",userRoutes)
+// ✅ PORT (IMPORTANT: use const)
+const PORT = process.env.PORT || 3000;
 
-
+// ✅ Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
